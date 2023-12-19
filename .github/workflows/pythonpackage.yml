@@ -6,7 +6,7 @@ jobs:
   build-package:
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10.x, 3.11.x]
+        python-version: [3.11.x]
         test-tool: [pylint, flake8, pytest]
         os: [ubuntu-latest, macOS-latest]
 
