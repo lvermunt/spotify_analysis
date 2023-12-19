@@ -84,9 +84,10 @@ SETUP = Setup(
 
     # List additional groups of dependencies here (e.g. development dependencies). You can install
     # these using the following syntax, for example:
-    # $ pip install -e .[dev,test]
+    # $ pip install -e .[dev] 
+    # for zsh: $ pip install -e .\[dev\] 
     extras_require={
-        "dev": ["pylint>=3.0.3", "setuptools>=68.2.2"]
+        "dev": ["pylint>=3.0.3", "flake8>=6.1.0", "pytest>=6.2.2", "setuptools>=7.4.3"]
     },
 
     # Although 'package_data' is the preferred approach, in some case you may need to place data
