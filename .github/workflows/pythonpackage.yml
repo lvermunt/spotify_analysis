@@ -25,4 +25,4 @@ jobs:
       - name: Test with ${{ matrix.test-tool }}
         run: |
           pip install ${{ matrix.test-tool }}
-          run_tests.sh ${{ matrix.test-tool }}
+          tests/run_tests.sh ${{ matrix.test-tool }}
