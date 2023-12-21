@@ -23,6 +23,7 @@ jobs:
           pip install --upgrade setuptools
           pip install -r requirements.txt
       - name: Test with ${{ matrix.test-tool }}
+        working-directory: ./tests
         run: |
           pip install ${{ matrix.test-tool }}
-          tests/run_tests.sh ${{ matrix.test-tool }}
+          run_tests.sh ${{ matrix.test-tool }}
