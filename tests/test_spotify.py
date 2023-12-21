@@ -6,7 +6,7 @@ import json
 from spotify_analysis.spotify import Spotify
 from spotify_analysis.utils import get_spotify_history, modify_columns_spotify_history
 
-df_songs = get_spotify_history('./')
+df_songs = get_spotify_history('./tests/')
 df_songs = modify_columns_spotify_history(df_songs)
 
 spotify_api = Spotify(reference='tracks')
