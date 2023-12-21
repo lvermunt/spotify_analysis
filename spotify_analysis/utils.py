@@ -38,6 +38,7 @@ def get_spotify_history(inputdir):
 
     return df
 
+
 def modify_columns_spotify_history(df):
     """
     Modifies some of the default names of the spotify streaming history

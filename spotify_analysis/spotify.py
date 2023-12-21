@@ -14,6 +14,7 @@ from aiohttp import ClientSession
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 BASE_URL = 'https://api.spotify.com/v1/'
 
+
 class Spotify:
     """
     Class to handle all access requests to Spotify web API
