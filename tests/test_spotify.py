@@ -11,7 +11,7 @@ df_songs = modify_columns_spotify_history(df_songs)
 
 spotify_api = Spotify(reference='tracks')
 
-#TODO: Test API (via both requests and aiohttp with github secrets)
+# TODO: Test API (via both requests and aiohttp with github secrets)
 
 with open('./Spotify_Response_Sample_Track.json', 'r', encoding='utf-8') as f:
     output = json.load(f)

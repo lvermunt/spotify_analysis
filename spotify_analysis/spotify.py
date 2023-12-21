@@ -1,4 +1,6 @@
-"""Module to handle all access requests to Spotify web API"""
+"""
+Module to handle all access requests to Spotify web API
+"""
 import asyncio
 import time
 import json
@@ -8,13 +10,14 @@ import requests
 from tqdm import tqdm
 from aiohttp import ClientSession
 
+
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 BASE_URL = 'https://api.spotify.com/v1/'
 
 class Spotify:
     """
     Class to handle all access requests to Spotify web API
-    
+
     Attributes
     ----------
     cred : dict
@@ -71,7 +74,7 @@ class Spotify:
         """
         Store spotify access token and headers to access Spotify's
         resources via calls to web API.
-        
+
         See https://developer.spotify.com/documentation/web-api/concepts/access-token
         """
 
@@ -79,7 +82,7 @@ class Spotify:
                                       {'grant_type': 'client_credentials',
                                        'client_id': self.cred['CLIENT_ID'],
                                        'client_secret': self.cred['CLIENT_SECRET']
-                                      },
+                                       },
                                       timeout=10)
         auth_response_data = auth_response.json()
         self.access_token = auth_response_data['access_token']
@@ -92,7 +95,7 @@ class Spotify:
 
         Might be the best option, since too many requests to Spotify API
         will block it because API rate limit exceeded.
-        
+
         Parameters
         ----------
         uri_list : list of str
@@ -123,7 +126,7 @@ class Spotify:
     def fill_metadata_dictionary(self, output, list_uri, metadata):
         """
         Fill the metadata dictionary from processed uri. Metadata can
-        be 1-deep or 2-deep, and all should (so far) have the same deepness. 
+        be 1-deep or 2-deep, and all should (so far) have the same deepness.
 
         Parameters
         ----------
@@ -167,12 +170,12 @@ class Spotify:
         """
         Access Spotify metadata via `aiohttp` (i.e. asynchronous).
         First function to process the input in batches
-        
+
         Note that too many requests to Spotify API will block the
         script because the API rate limit exceeded. This can be
         controlled by `self.batch_size` and `self.sec_wait`. Function
         will terminate in case one API request was not succesful.
-        
+
         Parameters
         ----------
         uri_list : list of str
@@ -182,7 +185,7 @@ class Spotify:
             In case of double list the requested data is two-layer deep
         """
 
-        #TODO: Add option to access n<=50 ids at once
+        # TODO: Add option to access n<=50 ids at once
 
         total_size = len(uri_list)
         for ibx in tqdm(range(0, total_size, self.batch_size)):
@@ -199,7 +202,7 @@ class Spotify:
         Access Spotify metadata via `aiohttp` (i.e. asynchronous)
         Actual code to access metadata. Should be called in batches
         by `access_spotify_api_async(uri_list, metadata)`
-        
+
         Parameters
         ----------
         uri_list : list of str
@@ -240,11 +243,11 @@ class Spotify:
 
     async def make_request(self, url, queue: asyncio.Queue):
         """
-        Asynchronously makes an HTTP GET request to the specified URL 
+        Asynchronously makes an HTTP GET request to the specified URL
         using the aiohttp library. The ClientSession with custom headers
         created by `get_spotify_access_token()`. The response is stored
         in a dictionary along with the original URL and put into the
-        specified asyncio queue. A small sleep of 0.01 seconds is 
+        specified asyncio queue. A small sleep of 0.01 seconds is
         introduced to avoid potential blocking issues.
 
         Parameters

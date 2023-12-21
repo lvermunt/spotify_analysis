@@ -6,6 +6,7 @@ import re
 import os.path
 from setuptools import setup, find_packages
 
+
 class Setup():
     """Convenience wrapper (for C.I. purposes) of the `setup()` call form `setuptools`.
     """
@@ -72,7 +73,7 @@ SETUP = Setup(
     # List run-time dependencies here. These will be installed by pip when your project is
     # installed. For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires = [
+    install_requires=[
         'pandas>=2.1.4',
         'pyyaml>=6.0.1',
         'tqdm>=4.66.1',
@@ -84,8 +85,8 @@ SETUP = Setup(
 
     # List additional groups of dependencies here (e.g. development dependencies). You can install
     # these using the following syntax, for example:
-    # $ pip install -e .[dev] 
-    # for zsh: $ pip install -e .\[dev\] 
+    # $ pip install -e .[dev]
+    # for zsh: $ pip install -e .\[dev\]
     extras_require={
         "dev": ["pylint>=3.0.3", "flake8>=6.1.0", "pytest>=6.2.2", "setuptools>=7.4.3"]
     },

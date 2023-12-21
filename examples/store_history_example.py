@@ -1,5 +1,5 @@
 """
-Example to store your spotify streaming history in .csv files. Additionally, 
+Example to store your spotify streaming history in .csv files. Additionally,
 metadata corresponding to your tracks/artists is accessed
 """
 
@@ -10,6 +10,7 @@ import logging
 import pandas as pd
 from spotify_analysis.spotify import Spotify
 from spotify_analysis.utils import get_spotify_history, modify_columns_spotify_history
+
 
 def main():
     """
@@ -93,6 +94,7 @@ def main():
     df_meta_artist.to_csv(os.path.join(args.output, 'ArtistMetadataTable.csv'))
     df_meta_artist = df_meta_artist.explode('genres')
     df_meta_artist.to_csv(os.path.join(args.output, 'ArtistMetadataTable_GenresExpanded.csv'))
+
 
 if __name__ == '__main__':
     sys.exit(main())

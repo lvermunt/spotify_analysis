@@ -1,6 +1,9 @@
-"""Module with some utility functions"""
+"""
+Module with some utility functions
+"""
 import os
 import pandas as pd
+
 
 def get_spotify_history(inputdir):
     """
@@ -12,7 +15,7 @@ def get_spotify_history(inputdir):
     inputdir : str
         The path to the input directory where your spotify streaming
         history json files are stored
-    
+
     Return
     ------
     pandas.Series
@@ -46,7 +49,7 @@ def modify_columns_spotify_history(df):
     df : pandas.Series
         Pandas dataframe containing the full spotify streaming history as
         loaded by `get_spotify_history(inputdir)`
-    
+
     Return
     ------
     pandas.Series
@@ -61,7 +64,7 @@ def modify_columns_spotify_history(df):
     df['unique_tr'] = df['artist_name'] + ' : ' + df['track_name']
 
     # Store track_uri without prefix
-    df['track_uri'] = df['spotify_track_uri'].str.split(":", expand = True)[2]
+    df['track_uri'] = df['spotify_track_uri'].str.split(":", expand=True)[2]
 
     # Remove the non-tracks from history (e.g. podcasts)
     df = df.loc[df['track_uri'].notnull()]
