@@ -11,8 +11,8 @@ from tqdm import tqdm
 from aiohttp import ClientSession
 
 
-AUTH_URL = 'https://accounts.spotify.com/api/token'
-BASE_URL = 'https://api.spotify.com/v1/'
+AUTH_URL = "https://accounts.spotify.com/api/token"
+BASE_URL = "https://api.spotify.com/v1/"
 
 
 class Spotify:
@@ -46,8 +46,7 @@ class Spotify:
         different batches of uri's (to avoid timeout of API)
     """
 
-    def __init__(self, reference='tracks', batch_size=200, sec_wait=5):
-
+    def __init__(self, reference="tracks", batch_size=200, sec_wait=5):
         self.cred = {}
         self.access_token = None
         self.headers = {}
@@ -68,7 +67,7 @@ class Spotify:
             your `CLIENT_ID` and `CLIENT_SECRET`
         """
 
-        with open(secret_yaml_file, 'r', encoding='utf-8') as file:
+        with open(secret_yaml_file, "r", encoding="utf-8") as file:
             self.cred = yaml.safe_load(file)
 
     def get_spotify_access_token(self):
@@ -79,16 +78,19 @@ class Spotify:
         See https://developer.spotify.com/documentation/web-api/concepts/access-token
         """
 
-        auth_response = requests.post(AUTH_URL,
-                                      {'grant_type': 'client_credentials',
-                                       'client_id': self.cred['CLIENT_ID'],
-                                       'client_secret': self.cred['CLIENT_SECRET']
-                                       },
-                                      timeout=10)
+        auth_response = requests.post(
+            AUTH_URL,
+            {
+                "grant_type": "client_credentials",
+                "client_id": self.cred["CLIENT_ID"],
+                "client_secret": self.cred["CLIENT_SECRET"],
+            },
+            timeout=10,
+        )
         auth_response_data = auth_response.json()
-        self.access_token = auth_response_data['access_token']
+        self.access_token = auth_response_data["access_token"]
 
-        self.headers = {'Authorization': f'Bearer {self.access_token}'}
+        self.headers = {"Authorization": f"Bearer {self.access_token}"}
 
     def access_spotify_api(self, uri_list, metadata, n_uri=50):
         """
@@ -108,12 +110,12 @@ class Spotify:
         """
 
         for ibx in tqdm(range(0, len(uri_list), n_uri)):
-            uri = uri_list[ibx:ibx + n_uri]
+            uri = uri_list[ibx : ibx + n_uri]
 
             if len(uri) == 1:
-                url = BASE_URL + self.reference + '/' + uri[0]
+                url = BASE_URL + self.reference + "/" + uri[0]
             else:
-                url = BASE_URL + self.reference + '?ids=' + '%2C'.join(uri)
+                url = BASE_URL + self.reference + "?ids=" + "%2C".join(uri)
             res = requests.get(url, headers=self.headers, timeout=10)
 
             try:
@@ -154,7 +156,7 @@ class Spotify:
 
         # Metadata 2-deep
         if len(metadata[0]) != 2:
-            logging.fatal('Can only process metadata that is 1- or 2-deep!')
+            logging.fatal("Can only process metadata that is 1- or 2-deep!")
 
         for n_uri, uri in enumerate(list_uri):
             metadata_1 = [sublist[0] for sublist in metadata]
@@ -190,10 +192,9 @@ class Spotify:
 
         total_size = len(uri_list)
         for ibx in tqdm(range(0, total_size, self.batch_size)):
-            succes = asyncio.run(self.get_metadata_api(uri_list[ibx:ibx + self.batch_size],
-                                                       metadata
-                                                       )
-                                 )
+            succes = asyncio.run(
+                self.get_metadata_api(uri_list[ibx : ibx + self.batch_size], metadata)
+            )
             if not succes:
                 break
             time.sleep(self.sec_wait)
@@ -219,13 +220,13 @@ class Spotify:
             case of error (typically because API rate limit exceeded)
         """
 
-        base_url = 'https://api.spotify.com/v1/'
+        base_url = "https://api.spotify.com/v1/"
 
         results = []
         queue = asyncio.Queue()
         async with asyncio.TaskGroup() as group:
             for uri in uri_list:
-                url = base_url + self.reference + '/' + uri
+                url = base_url + self.reference + "/" + uri
                 group.create_task(self.make_request(url, queue))
 
         while not queue.empty():
@@ -233,8 +234,8 @@ class Spotify:
 
         for res in results:
             try:
-                output = json.loads(res['response'])
-                uri = res['url'].split('/')[-1]
+                output = json.loads(res["response"])
+                uri = res["url"].split("/")[-1]
                 self.fill_metadata_dictionary(output, uri, metadata)
             except AttributeError:
                 logging.warning("API request not succesful!")
@@ -261,7 +262,6 @@ class Spotify:
 
         async with ClientSession(headers=self.headers) as session:
             async with session.get(url) as response:
-                result = {'response': await response.text(),
-                          'url': url}
+                result = {"response": await response.text(), "url": url}
                 await queue.put(result)
                 await asyncio.sleep(0.01)

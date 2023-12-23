@@ -13,3 +13,5 @@ git clone https://github.com/lvermunt/spotify_analysis.git
 cd spotify_analysis
 pip3 install -e .
 ```
+
+Using the [`black`](https://github.com/psf/black) package to automatically format the Python code.

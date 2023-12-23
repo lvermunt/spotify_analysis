@@ -7,9 +7,9 @@ import os.path
 from setuptools import setup, find_packages
 
 
-class Setup():
-    """Convenience wrapper (for C.I. purposes) of the `setup()` call form `setuptools`.
-    """
+class Setup:
+    """Convenience wrapper (for C.I. purposes) of the `setup()` call form `setuptools`."""
+
     def __init__(self, **kw):
         self.conf = kw
         self.work_dir = os.path.abspath(os.path.dirname(__file__))
@@ -49,40 +49,31 @@ class Setup():
 
 
 SETUP = Setup(
-    name='spotify_analysis',
-
-    version='0.0.1',
-
-    description='Tool for analysis of spotify streaming data',
-
-    url='https://github.com/lvermunt/spotify_analysis',
-    author='luuk-vermunt',
-    author_email='',
-    license='MIT',
-
+    name="spotify_analysis",
+    version="0.0.1",
+    description="Tool for analysis of spotify streaming data",
+    url="https://github.com/lvermunt/spotify_analysis",
+    author="luuk-vermunt",
+    author_email="",
+    license="MIT",
     # See https://pypi.org/classifiers/
     classifiers=[],
-
     # What does your project relate to?
     keywords="",
-
     # You can just specify the packages manually here if your project is simple. Or you can use
     # find_packages().
     packages=find_packages(),
-
     # List run-time dependencies here. These will be installed by pip when your project is
     # installed. For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'pandas>=2.1.4',
-        'pyyaml>=6.0.1',
-        'tqdm>=4.66.1',
-        'requests>=2.31.0',
-        'aiohttp>=3.9.1'
+        "pandas>=2.1.4",
+        "pyyaml>=6.0.1",
+        "tqdm>=4.66.1",
+        "requests>=2.31.0",
+        "aiohttp>=3.9.1",
     ],
-
-    python_requires='>3.11.1',
-
+    python_requires=">3.11.1",
     # List additional groups of dependencies here (e.g. development dependencies). You can install
     # these using the following syntax, for example:
     # $ pip install -e .[dev]
@@ -90,19 +81,17 @@ SETUP = Setup(
     extras_require={
         "dev": ["pylint>=3.0.3", "flake8>=6.1.0", "pytest>=6.2.2", "setuptools>=7.4.3"]
     },
-
     # Although 'package_data' is the preferred approach, in some case you may need to place data
     # files outside of your packages. See:
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
     data_files=[],
-
     # To provide executable scripts, use entry points in preference to the "scripts" keyword. Entry
     # points provide cross-platform support and allow pip to create the appropriate form of
     # executable for the target platform. See:
     # https://chriswarrick.com/blog/2014/09/15/python-apps-the-right-way-entry_points-and-scripts/
     entry_points={
         "console_scripts": ["spotify_analysis = spotify_analysis:entrypoint"]
-    }
+    },
 )
 
 if __name__ == "__main__":
