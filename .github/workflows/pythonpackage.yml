@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test-package:
+    name: "Build and test"
     strategy:
       matrix:
         python-version: [3.11.x]
@@ -28,6 +29,7 @@ jobs:
           tests/run_tests.sh ${{ matrix.test-tool }}
 
   linter:
+    name: "Linter"
     strategy:
       matrix:
         python-version: [3.11.x]
