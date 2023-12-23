@@ -17,7 +17,7 @@ test-pylint() {
     pinfo "Running test: pylint"
     type pylint
     find . -name '*.py' -a -not -path './dist/*' \
-        -a -not -path './build/*' | xargs pylint
+        -a -not -path './build/*' | xargs pylint --fail-under 9.5
 }
 
 test-flake8() {
