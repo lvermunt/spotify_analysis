@@ -15,5 +15,3 @@ pip3 install -e .
 ```
 
 Using the [`black`](https://github.com/psf/black) package to automatically format the Python code.
-
-Test if [this](http://www.blablabrokenlink.com/) broken link is found: 
