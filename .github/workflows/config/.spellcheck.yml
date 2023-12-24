@@ -5,7 +5,7 @@ matrix:
     d: en_GB
   dictionary:
     wordlists:
-    - .github/workflows/configwordlist.txt
+    - .github/workflows/config/wordlist.txt
     encoding: utf-8
   pipeline:
   - pyspelling.filters.markdown:
@@ -24,7 +24,7 @@ matrix:
     d: en_GB
   dictionary:
     wordlists:
-    - .github/workflows/config/configwordlist.txt
+    - .github/workflows/config/config/wordlist.txt
     encoding: utf-8
   pipeline:
   - pyspelling.filters.url:

@@ -11,6 +11,8 @@ jobs:
         name: Checkout repository
       - uses: gaurav-nelson/github-action-markdown-link-check@v1
         name: Check links in Markdown files
+        with:
+          config-file: ".github/workflows/config/mlc_config.json"        
 
   spelling:
     name: "Spelling check"
