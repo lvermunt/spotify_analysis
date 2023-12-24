@@ -1,11 +1,13 @@
 macOS
 Spotify
 Spotify's
+spotify
 
 github
 dataframe
 dataframes
 entrypoint
+api
 
 README
 TODO
@@ -16,6 +18,7 @@ str
 yaml
 bool
 csv
+async
 
 setuptools
 asyncio
@@ -27,3 +30,4 @@ inputdir
 df
 uri
 uri's
+url

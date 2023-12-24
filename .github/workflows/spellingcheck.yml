@@ -27,7 +27,7 @@ jobs:
         with:
           config_path: .github/workflows/config/.spellcheck.yml
           task_name: Markdown
-          output_file: markdown_spellcheck-output.txt
+          output_file: markdown_spellcheck.txt
 
       - name: Spelling check Python files
         if: always()
