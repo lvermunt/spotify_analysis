@@ -7,10 +7,11 @@ jobs:
     name: "Check links"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout repository
-      - uses: gaurav-nelson/github-action-markdown-link-check@v1
-        name: Check links in Markdown files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check links in Markdown files
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
           config-file: ".github/workflows/config/mlc_config.json"        
 
@@ -18,17 +19,19 @@ jobs:
     name: "Spelling check"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout repository
-      - uses: rojopolis/spellcheck-github-actions@0.35.0
-        name: Spelling check Markdown files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Spelling check Markdown files
+        uses: rojopolis/spellcheck-github-actions@0.35.0
         with:
           config_path: .github/workflows/config/.spellcheck.yml
           task_name: Markdown
           output_file: markdown_spellcheck-output.txt
 
-      - uses: rojopolis/spellcheck-github-actions@0.35.0
-        name: Spelling check Python files
+      - name: Spelling check Python files
+        if: always()
+        uses: rojopolis/spellcheck-github-actions@0.35.0
         with:
           config_path: .github/workflows/config/.spellcheck.yml
           task_name: Python
