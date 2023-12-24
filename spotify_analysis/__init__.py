@@ -1,5 +1,5 @@
 """
-Spotify_analysi module
+Spotify analysis module
 """
 
 

@@ -32,7 +32,7 @@ class Setup:
             self.conf["include_package_data"] = True
             self.conf["package_data"] = package_data
 
-        # Automatically fill the long description from `README.md`. Filter out lines that look like
+        # Automatically fill the long description from README. Filter out lines that look like
         # "badges".
         assert "long_description" not in self.conf
         assert "long_description_content_type" not in self.conf

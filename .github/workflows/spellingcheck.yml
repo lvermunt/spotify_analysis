@@ -38,6 +38,7 @@ jobs:
           output_file: python_spellcheck.txt
 
       - name: Create summary
+        if: always()
         run: |
           function create_summary {
             status=`cat $2_spellcheck.txt | grep "Spelling check" | cut -d ' ' -f 3 | tr -d '!'`

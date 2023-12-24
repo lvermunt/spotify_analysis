@@ -122,7 +122,7 @@ class Spotify:
                 output = res.json()
                 self.fill_metadata_dictionary(output, uri, metadata)
             except AttributeError:
-                logging.warning("API request not succesful!")
+                logging.warning("API request not successful!")
                 logging.warning(res)
                 break
 
@@ -134,7 +134,7 @@ class Spotify:
         Parameters
         ----------
         output : dict
-            Spotify's metadate from given uri in json format
+            Spotify's metadata from given uri in json format
         list_uri : list of str or str
             Spotify uri's in string format to be accessed. List in case
             when multiple uri's are accessed by same request.
@@ -177,7 +177,7 @@ class Spotify:
         Note that too many requests to Spotify API will block the
         script because the API rate limit exceeded. This can be
         controlled by `self.batch_size` and `self.sec_wait`. Function
-        will terminate in case one API request was not succesful.
+        will terminate in case one API request was not successful.
 
         Parameters
         ----------
@@ -216,7 +216,7 @@ class Spotify:
         Return
         ------
         bool
-            Boolean if accessing metadata was succesful. Stop process in
+            Boolean if accessing metadata was successful. Stop process in
             case of error (typically because API rate limit exceeded)
         """
 
@@ -238,7 +238,7 @@ class Spotify:
                 uri = res["url"].split("/")[-1]
                 self.fill_metadata_dictionary(output, uri, metadata)
             except AttributeError:
-                logging.warning("API request not succesful!")
+                logging.warning("API request not successful!")
                 logging.warning(res)
                 return False
         return True
